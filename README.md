@@ -12,3 +12,6 @@
 3. Run Spring Boot Project
 4. Verify Start Result
 5. Health Check
+6. REST Controller
+7. ERROR Advisor
+8. Exception Handler
