@@ -1,6 +1,6 @@
 package com.example.starter.exception;
 
-public class FileException extends BaseExeption {
+public class FileException extends BaseException {
 
   public FileException(String code) {
     super("file." + code);

@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.starter.business.ProductBusiness;
-import com.example.starter.exception.BaseExeption;
+import com.example.starter.exception.BaseException;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ public class ProductApi {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<String> getProductById(@PathVariable("id") String id) throws BaseExeption {
+  public ResponseEntity<String> getProductById(@PathVariable("id") String id) throws BaseException {
     String response = product.getProductById(id);
     return ResponseEntity.ok(response);
   }

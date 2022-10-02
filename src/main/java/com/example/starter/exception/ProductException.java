@@ -1,6 +1,6 @@
 package com.example.starter.exception;
 
-public class ProductException extends BaseExeption {
+public class ProductException extends BaseException {
 
   public ProductException(String code) {
     super("product." + code);

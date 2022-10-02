@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.starter.entity.User;
-import com.example.starter.exception.BaseExeption;
+import com.example.starter.exception.BaseException;
 import com.example.starter.service.UserService;
 
 @SpringBootTest
@@ -23,7 +23,7 @@ class TestUserService {
 
 	@Order(1)
 	@Test
-	void testCreate() throws BaseExeption {
+	void testCreate() throws BaseException {
 		User user = userService.create(TestCreateData.email, TestCreateData.password, TestCreateData.name);
 
 		Assertions.assertNotNull(user);
@@ -40,7 +40,7 @@ class TestUserService {
 
 	@Order(2)
 	@Test
-	void testUpdate() throws BaseExeption {
+	void testUpdate() throws BaseException {
 		Optional<User> opt = userService.findByEmail(TestCreateData.email);
 		Assertions.assertTrue(opt.isPresent());
 

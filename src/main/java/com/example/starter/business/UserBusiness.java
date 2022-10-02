@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.starter.entity.User;
-import com.example.starter.exception.BaseExeption;
+import com.example.starter.exception.BaseException;
 import com.example.starter.exception.FileException;
 import com.example.starter.exception.UserException;
 import com.example.starter.mapper.UserMapper;
@@ -29,7 +29,7 @@ public class UserBusiness {
     this.userMapper = userMapper;
   }
 
-  public MRegisterResponse register(MRegisterRequest request) throws BaseExeption {
+  public MRegisterResponse register(MRegisterRequest request) throws BaseException {
 
     User users = userService.create(request.getEmail(), request.getPassword(), request.getName());
 
@@ -38,7 +38,7 @@ public class UserBusiness {
     return response;
   }
 
-  public String login(MLoginRequest request) throws BaseExeption {
+  public String login(MLoginRequest request) throws BaseException {
 
     Optional<User> opt = userService.findByEmail(request.getEmail());
 
@@ -58,7 +58,7 @@ public class UserBusiness {
     return token;
   }
 
-  public String uploadProfilePicture(MultipartFile file) throws BaseExeption {
+  public String uploadProfilePicture(MultipartFile file) throws BaseException {
     // Validate file
     if (file == null) {
       throw FileException.fileNull();

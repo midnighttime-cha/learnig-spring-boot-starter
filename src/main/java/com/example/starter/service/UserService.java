@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.starter.entity.User;
-import com.example.starter.exception.BaseExeption;
+import com.example.starter.exception.BaseException;
 import com.example.starter.exception.UserException;
 import com.example.starter.repository.UserRepository;
 
@@ -31,7 +31,7 @@ public class UserService {
     return repository.save(user);
   }
 
-  public User userUpdateName(String id, String name) throws BaseExeption {
+  public User userUpdateName(String id, String name) throws BaseException {
     Optional<User> opt = repository.findById(id);
 
     if (opt.isEmpty()) {
@@ -52,7 +52,7 @@ public class UserService {
     return passwordEncoder.matches(rawPassword, encodedPassword);
   }
 
-  public User create(String email, String password, String name) throws BaseExeption {
+  public User create(String email, String password, String name) throws BaseException {
     User entity = new User();
 
     // Validate

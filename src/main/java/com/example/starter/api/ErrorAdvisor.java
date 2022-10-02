@@ -7,15 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.example.starter.exception.BaseExeption;
+import com.example.starter.exception.BaseException;
 
 import lombok.Data;
 
 @ControllerAdvice
 public class ErrorAdvisor {
 
-  @ExceptionHandler(BaseExeption.class)
-  public ResponseEntity<ErrorResponse> handleBaseException(BaseExeption e) {
+  @ExceptionHandler(BaseException.class)
+  public ResponseEntity<ErrorResponse> handleBaseException(BaseException e) {
     ErrorResponse response = new ErrorResponse();
     response.setError(e.getMessage());
     response.setStatus(HttpStatus.EXPECTATION_FAILED.value());

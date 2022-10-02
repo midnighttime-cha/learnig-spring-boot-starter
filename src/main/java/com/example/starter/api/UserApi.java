@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.starter.business.UserBusiness;
-import com.example.starter.exception.BaseExeption;
+import com.example.starter.exception.BaseException;
 import com.example.starter.model.MLoginRequest;
 import com.example.starter.model.MRegisterRequest;
 import com.example.starter.model.MRegisterResponse;
@@ -25,19 +25,19 @@ public class UserApi {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<String> login(@RequestBody MLoginRequest request) throws BaseExeption {
+  public ResponseEntity<String> login(@RequestBody MLoginRequest request) throws BaseException {
     String response = business.login(request);
     return ResponseEntity.ok(response);
   }
 
   @PostMapping("/register")
-  public ResponseEntity<MRegisterResponse> register(@RequestBody MRegisterRequest request) throws BaseExeption {
+  public ResponseEntity<MRegisterResponse> register(@RequestBody MRegisterRequest request) throws BaseException {
     MRegisterResponse response = business.register(request);
     return ResponseEntity.ok(response);
   }
 
   @PostMapping("/uploadProfile")
-  public ResponseEntity<String> uploadProfilePicture(@RequestPart MultipartFile file) throws BaseExeption {
+  public ResponseEntity<String> uploadProfilePicture(@RequestPart MultipartFile file) throws BaseException {
     String response = business.uploadProfilePicture(file);
     return ResponseEntity.ok(response);
   }
