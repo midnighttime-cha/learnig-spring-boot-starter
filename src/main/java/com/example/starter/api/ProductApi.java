@@ -14,15 +14,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/product")
 public class ProductApi {
 
-  private final ProductBusiness product;
+  private final ProductBusiness business;
 
-  public ProductApi(ProductBusiness product) {
-    this.product = product;
+  public ProductApi(ProductBusiness business) {
+    this.business = business;
   }
 
   @GetMapping("/{id}")
   public ResponseEntity<String> getProductById(@PathVariable("id") String id) throws BaseException {
-    String response = product.getProductById(id);
+    String response = business.getProductById(id);
     return ResponseEntity.ok(response);
   }
 
