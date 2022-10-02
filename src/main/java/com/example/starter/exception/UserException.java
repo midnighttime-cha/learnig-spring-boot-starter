@@ -11,6 +11,10 @@ public class UserException extends BaseExeption {
     return new UserException("register.request.null");
   }
 
+  public static UserException notFound() {
+    return new UserException("not.found");
+  }
+
   public static UserException emailNull() {
     return new UserException("register.email.null");
   }

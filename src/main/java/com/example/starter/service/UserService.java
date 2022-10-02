@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.starter.entity.User;
+import com.example.starter.exception.BaseExeption;
 import com.example.starter.exception.UserException;
 import com.example.starter.repository.UserRepository;
 
@@ -26,11 +27,32 @@ public class UserService {
     return repository.findByEmail(email);
   }
 
+  public User update(User user) {
+    return repository.save(user);
+  }
+
+  public User userUpdateName(String id, String name) throws BaseExeption {
+    Optional<User> opt = repository.findById(id);
+
+    if (opt.isEmpty()) {
+      throw UserException.notFound();
+    }
+
+    User user = opt.get();
+    user.setName(name);
+
+    return repository.save(user);
+  }
+
+  public void delete(String id) {
+    repository.deleteById(id);
+  }
+
   public boolean matchPassword(String rawPassword, String encodedPassword) {
     return passwordEncoder.matches(rawPassword, encodedPassword);
   }
 
-  public User create(String email, String password, String name) throws UserException {
+  public User create(String email, String password, String name) throws BaseExeption {
     User entity = new User();
 
     // Validate
