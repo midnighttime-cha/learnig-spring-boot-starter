@@ -1,7 +1,9 @@
 package com.example.starter.service;
 
 import java.util.Objects;
+import java.util.Optional;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.starter.entity.User;
@@ -13,8 +15,19 @@ public class UserService {
 
   private final UserRepository repository;
 
-  public UserService(UserRepository repository) {
+  private final PasswordEncoder passwordEncoder;
+
+  public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
     this.repository = repository;
+    this.passwordEncoder = passwordEncoder;
+  }
+
+  public Optional<User> findByEmail(String email) {
+    return repository.findByEmail(email);
+  }
+
+  public boolean matchPassword(String rawPassword, String encodedPassword) {
+    return passwordEncoder.matches(rawPassword, encodedPassword);
   }
 
   public User create(String email, String password, String name) throws UserException {
@@ -39,7 +52,7 @@ public class UserService {
     }
 
     entity.setEmail(email);
-    entity.setPassword(password);
+    entity.setPassword(passwordEncoder.encode(password));
     entity.setName(name);
 
     return repository.save(entity);

@@ -2,6 +2,7 @@ package com.example.starter.business;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,7 +10,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.starter.entity.User;
 import com.example.starter.exception.BaseExeption;
 import com.example.starter.exception.FileException;
+import com.example.starter.exception.UserException;
+import com.example.starter.mapper.UserMapper;
+import com.example.starter.model.MLoginRequest;
 import com.example.starter.model.MRegisterRequest;
+import com.example.starter.model.MRegisterResponse;
 import com.example.starter.service.UserService;
 
 @Service
@@ -17,18 +22,40 @@ public class UserBusiness {
 
   private final UserService userService;
 
-  public UserBusiness(UserService userService) {
+  private final UserMapper userMapper;
+
+  public UserBusiness(UserService userService, UserMapper userMapper) {
     this.userService = userService;
+    this.userMapper = userMapper;
   }
 
-  public User register(MRegisterRequest request) throws BaseExeption {
+  public MRegisterResponse register(MRegisterRequest request) throws BaseExeption {
 
-    System.out.println(request);
     User users = userService.create(request.getEmail(), request.getPassword(), request.getName());
 
-    // TODO mapper
+    MRegisterResponse response = userMapper.toRegisterReponse(users);
 
-    return users;
+    return response;
+  }
+
+  public String login(MLoginRequest request) throws BaseExeption {
+
+    Optional<User> opt = userService.findByEmail(request.getEmail());
+
+    if (opt.isEmpty()) {
+      throw UserException.loginFailEmailNotFound();
+    }
+
+    User user = opt.get();
+
+    if (!userService.matchPassword(request.getPassword(), user.getPassword())) {
+      throw UserException.loginFailPasswordIncorrect();
+    }
+
+    // TDOD: Gennerate JWT
+    String token = "JWT TODO";
+
+    return token;
   }
 
   public String uploadProfilePicture(MultipartFile file) throws BaseExeption {

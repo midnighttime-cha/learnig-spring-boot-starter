@@ -20,4 +20,7 @@ public class User extends BaseEntity {
   @Column(nullable = false, length = 120)
   private String name;
 
+  @Column(nullable = true, length = 13)
+  private String civilId;
+
 }

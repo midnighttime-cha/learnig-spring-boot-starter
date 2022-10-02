@@ -8,7 +8,7 @@
 - Health Check
 - REST Controller
 - ERROR Advisor
-- Exception Handler<br>
+- Exception Handler
   ### Note: Dependency
   - spring-boot-starter-web
   - spring-boot-starter-actuator
@@ -16,10 +16,11 @@
   - spring-boot-configuration-processor
   - spring-boot-starter-test
   - lombok
+
 ## EP.2
 - Pending Topic (Upload File)
 - Database (PostgreSQL)
-  Dependency
-  - 
+  - Dependency: org.postgresql -> postgresql
 - Security
+  - Dependency: org.springframework.boot: spring-boot-starter-security
 - Unit Test
