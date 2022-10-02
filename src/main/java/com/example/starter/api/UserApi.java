@@ -9,18 +9,19 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.starter.business.TestBusiness;
+import com.example.starter.business.UserBusiness;
+import com.example.starter.entity.User;
 import com.example.starter.exception.BaseExeption;
 import com.example.starter.model.MRegisterRequest;
 import com.example.starter.model.TestResponse;
 
 @RestController
-@RequestMapping("/test")
-public class TestApi {
+@RequestMapping("/user")
+public class UserApi {
 
-  private final TestBusiness business;
+  private final UserBusiness business;
 
-  public TestApi(TestBusiness business) {
+  public UserApi(UserBusiness business) {
     this.business = business;
   }
 
@@ -34,10 +35,9 @@ public class TestApi {
     return response;
   }
 
-  @PostMapping
-  @RequestMapping("/register")
-  public ResponseEntity<String> register(@RequestBody MRegisterRequest request) throws BaseExeption {
-    String response = business.register(request);
+  @PostMapping("/register")
+  public ResponseEntity<User> register(@RequestBody MRegisterRequest request) throws BaseExeption {
+    User response = business.register(request);
     return ResponseEntity.ok(response);
   }
 

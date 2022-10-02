@@ -8,25 +8,30 @@ import java.util.Objects;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.starter.entity.User;
 import com.example.starter.exception.BaseExeption;
 import com.example.starter.exception.FileException;
 import com.example.starter.exception.UserException;
 import com.example.starter.model.MRegisterRequest;
+import com.example.starter.service.UserService;
 
 @Service
-public class TestBusiness {
+public class UserBusiness {
 
-  public String register(MRegisterRequest request) throws BaseExeption {
+  private final UserService userService;
 
-    if (request == null) {
-      throw UserException.requestNull();
-    }
+  public UserBusiness(UserService userService) {
+    this.userService = userService;
+  }
 
-    if (Objects.isNull(request.getEmail())) {
-      throw UserException.emailNull();
-    }
+  public User register(MRegisterRequest request) throws BaseExeption {
 
-    return "";
+    System.out.println(request);
+    User users = userService.create(request.getEmail(), request.getPassword(), request.getName());
+
+    // TODO mapper
+
+    return users;
   }
 
   public String uploadProfilePicture(MultipartFile file) throws BaseExeption {

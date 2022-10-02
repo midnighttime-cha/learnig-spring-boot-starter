@@ -19,5 +19,7 @@
 ## EP.2
 - Pending Topic (Upload File)
 - Database (PostgreSQL)
+  Dependency
+  - 
 - Security
 - Unit Test
