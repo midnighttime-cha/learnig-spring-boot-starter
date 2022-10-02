@@ -9,7 +9,7 @@
 - REST Controller
 - ERROR Advisor
 - Exception Handler
-- - Note: Dependency
+  "Note: Dependency"
   - spring-boot-starter-web
   - spring-boot-starter-actuator
   - spring-boot-devtools
