@@ -1,9 +1,7 @@
 package com.example.starter.business;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.starter.entity.User;
 import com.example.starter.exception.BaseExeption;
 import com.example.starter.exception.FileException;
-import com.example.starter.exception.UserException;
 import com.example.starter.model.MRegisterRequest;
 import com.example.starter.service.UserService;
 
@@ -57,12 +54,12 @@ public class UserBusiness {
       throw FileException.unsupported();
     }
 
-    try {
-      // Business Logic uploadfile
-      byte[] bytes = file.getBytes();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+    // try {
+    // // Business Logic uploadfile
+    // byte[] bytes = file.getBytes();
+    // } catch (IOException e) {
+    // e.printStackTrace();
+    // }
 
     return "";
   }
