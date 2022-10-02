@@ -1,17 +1,23 @@
 # Course outline
 
-## 1. EP1
-1. Setup IDE
-2. Create Spring Boot Project
+## EP.1
+- Setup IDE
+- Create Spring Boot Project
+- Run Spring Boot Project
+- Verify Start Result
+- Health Check
+- REST Controller
+- ERROR Advisor
+- Exception Handler
+- - Note: Dependency
   - spring-boot-starter-web
   - spring-boot-starter-actuator
   - spring-boot-devtools
   - spring-boot-configuration-processor
   - spring-boot-starter-test
   - lombok
-3. Run Spring Boot Project
-4. Verify Start Result
-5. Health Check
-6. REST Controller
-7. ERROR Advisor
-8. Exception Handler
+## EP.2
+- Pending Topic (Upload File)
+- Database (PostgreSQL)
+- Security
+- Unit Test
