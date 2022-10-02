@@ -8,8 +8,8 @@
 - Health Check
 - REST Controller
 - ERROR Advisor
-- Exception Handler
-  "Note: Dependency"
+- Exception Handler<br>
+  ### Note: Dependency"
   - spring-boot-starter-web
   - spring-boot-starter-actuator
   - spring-boot-devtools
