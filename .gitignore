@@ -34,3 +34,4 @@ build/
 
 ### Application Properties ###
 src/main/resources/application.yaml
+src/main/resources/application-copy.yaml
