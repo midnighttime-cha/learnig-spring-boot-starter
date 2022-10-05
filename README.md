@@ -24,3 +24,7 @@
 - Security
   - Dependency: org.springframework.boot: spring-boot-starter-security
 - Unit Test
+
+## EP.3
+- Database (Foreign Key)
+- JWT
