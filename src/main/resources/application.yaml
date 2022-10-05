@@ -4,9 +4,9 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:postgresql://localhost:5432/test_db?currentSchema=public
+    url: jdbc:postgresql://18.141.192.153:5432/backend?currentSchema=app
     username: postgres
-    password: password
+    password: LJnas5asdiu922!333
   servlet:
     multipart:
       enabled: true 
