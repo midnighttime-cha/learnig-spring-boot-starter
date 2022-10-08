@@ -1,7 +1,12 @@
 package com.example.starter.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,5 +27,11 @@ public class User extends BaseEntity {
 
   @Column(nullable = true, length = 13)
   private String civilId;
+
+  @OneToOne(mappedBy = "user", orphanRemoval = true)
+  private Social social;
+
+  @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, orphanRemoval = true)
+  private List<Address> addresses;
 
 }
