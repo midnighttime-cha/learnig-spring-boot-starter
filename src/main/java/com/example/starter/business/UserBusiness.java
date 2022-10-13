@@ -15,6 +15,7 @@ import com.example.starter.mapper.UserMapper;
 import com.example.starter.model.MLoginRequest;
 import com.example.starter.model.MRegisterRequest;
 import com.example.starter.model.MRegisterResponse;
+import com.example.starter.service.TokenService;
 import com.example.starter.service.UserService;
 
 @Service
@@ -24,9 +25,12 @@ public class UserBusiness {
 
   private final UserMapper userMapper;
 
-  public UserBusiness(UserService userService, UserMapper userMapper) {
+  private final TokenService tokenService;
+
+  public UserBusiness(UserService userService, UserMapper userMapper, TokenService tokenService) {
     this.userService = userService;
     this.userMapper = userMapper;
+    this.tokenService = tokenService;
   }
 
   public MRegisterResponse register(MRegisterRequest request) throws BaseException {
@@ -53,9 +57,7 @@ public class UserBusiness {
     }
 
     // TDOD: Gennerate JWT
-    String token = "JWT TODO";
-
-    return token;
+    return tokenService.tokenize(user);
   }
 
   public String uploadProfilePicture(MultipartFile file) throws BaseException {

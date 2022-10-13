@@ -15,14 +15,14 @@ public class MDatetime {
 
   private final String[] numberThai = new String[] { "๐", "๑", "๒", "๓", "๔", "๕", "๖", "๗", "๘", "๙" };
 
-  public String dateFormat(String dateTime, String pattern) {
+  public String dateFormat(Date dateTime, String pattern) {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, new Locale("th", "EN"));
     simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+7"));
-    String date = simpleDateFormat.format(new Date(dateTime));
+    String date = simpleDateFormat.format(dateTime);
     return date;
   }
 
-  public String dateFormatTHNumber(String dateTime, String type) {
+  public String dateFormatTHNumber(Date dateTime, String type) {
     String d = dateFormat(dateTime, "d");
 
     String y = dateFormat(dateTime, "yyyy");
