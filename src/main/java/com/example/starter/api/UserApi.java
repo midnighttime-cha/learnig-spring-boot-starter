@@ -1,6 +1,7 @@
 package com.example.starter.api;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,12 @@ public class UserApi {
   public ResponseEntity<MRegisterResponse> register(@RequestBody MRegisterRequest request) throws BaseException {
     MRegisterResponse response = business.register(request);
     return ResponseEntity.ok(response);
+  }
+
+  @GetMapping("/refreshToken")
+  public ResponseEntity<String> refreshToken() throws BaseException {
+    String refreshToken = business.refreshToken();
+    return ResponseEntity.ok(refreshToken);
   }
 
   @PostMapping("/uploadProfile")

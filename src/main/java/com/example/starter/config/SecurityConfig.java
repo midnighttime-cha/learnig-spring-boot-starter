@@ -9,8 +9,17 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.example.starter.config.token.TokenFilterConfigurer;
+import com.example.starter.service.TokenService;
+
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+  private final TokenService tokenService;
+
+  public SecurityConfig(TokenService tokenService) {
+    this.tokenService = tokenService;
+  }
 
   @Bean
   public PasswordEncoder passwordEncoder() {
@@ -38,7 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // API: "/user/register" or
         // "/user/login" the
         // allowed.
-        .anyRequest().authenticated(); // Other APIs must log in.
+        .anyRequest().authenticated() // Other APIs must log in.
+        .and().apply(new TokenFilterConfigurer(tokenService));
   }
 
 }

@@ -4,6 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,6 +20,7 @@ import com.example.starter.model.MRegisterRequest;
 import com.example.starter.model.MRegisterResponse;
 import com.example.starter.service.TokenService;
 import com.example.starter.service.UserService;
+import com.example.starter.util.SecurityUtil;
 
 @Service
 public class UserBusiness {
@@ -31,6 +35,24 @@ public class UserBusiness {
     this.userService = userService;
     this.userMapper = userMapper;
     this.tokenService = tokenService;
+  }
+
+  public String refreshToken() throws BaseException {
+    Optional<String> opt = SecurityUtil.getCurrentUserId();
+    if (opt.isEmpty()) {
+      throw UserException.unautherized();
+    }
+
+    String userId = opt.get();
+
+    Optional<User> optUsers = userService.findByIds(userId);
+
+    if (optUsers.isEmpty()) {
+      throw UserException.notFound();
+    }
+    User user = optUsers.get();
+
+    return tokenService.tokenize(user);
   }
 
   public MRegisterResponse register(MRegisterRequest request) throws BaseException {
