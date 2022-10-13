@@ -1,0 +1,17 @@
+
+spring:
+  config:
+    import:
+    - optional:file:.env[.properties]
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://${PG_HOST}:${PG_PORT}/${PG_DBNAME}?currentSchema=${PG_SCHEMA}
+    username: ${PG_USERNAME}
+    password: ${PG_PASSWORD}
+  servlet:
+    multipart:
+      enabled: true 
+      max-file-size: 2MB
+      max-request-size: 5MB
