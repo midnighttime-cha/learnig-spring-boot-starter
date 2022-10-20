@@ -15,10 +15,10 @@ import com.example.starter.entity.User;
 @Service
 public class TokenService {
 
-  @Value("${APP_SECRET}")
+  @Value("${app.token.secret}")
   private String secret;
 
-  @Value("${APP_ISSUER}")
+  @Value("${app.token.issuer}")
   private String issuer;
 
   public String tokenize(User user) {

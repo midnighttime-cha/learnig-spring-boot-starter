@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // requesting for API the server
         // know the client. But the server
         // unknow client when response data.
-        .and().authorizeRequests().antMatchers("/user/register", "/user/login").anonymous()
+        .and().authorizeRequests().antMatchers("/user/register", "/user/login", "/actuator/**").anonymous()
         // if requesting to the
         // API: "/user/register" or
         // "/user/login" the

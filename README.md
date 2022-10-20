@@ -28,3 +28,15 @@
 ## EP.3
 - Database (Foreign Key)
 - JWT
+
+## EP.4
+- Email
+- Job Schedule
+
+## EP.5
+- Websocket
+- Angular 11 (Frontend)
+
+## EP.6
+- Kafka
+- Redis
